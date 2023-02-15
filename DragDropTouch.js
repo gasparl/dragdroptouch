@@ -408,9 +408,9 @@ var DragDropTouch;
             }
         };
         DragDropTouch.prototype._dispatchEvent = function (e, type, target) {
-            if (e && target) {
-                var evt = document.createEvent('Event'), t = e.touches ? e.touches[0] : e;
-                evt.initEvent(type, true, true);
+            if (e && target) {                
+                var evt = new Event(type, { bubbles: true, cancelable: true }),
+                    t = e.touches ? e.touches[0] : e;
                 evt.button = 0;
                 evt.which = evt.buttons = 1;
                 this._copyProps(evt, e, DragDropTouch._kbdProps);
